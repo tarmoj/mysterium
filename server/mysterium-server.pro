@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    wsserver.cpp
+    wsserver.cpp \
+    player.cpp
 
 HEADERS  += mainwindow.h \
-    wsserver.h
+    wsserver.h \
+    player.h
 
 FORMS    += mainwindow.ui
 
