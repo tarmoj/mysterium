@@ -59,12 +59,6 @@ Rectangle {
 
         Row {
             id: serverRow
-            //width: parent.width
-            //Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-            //            anchors.right: parent.right
-            //            anchors.rightMargin: 6
-            //            anchors.left: parent.left
-            //            anchors.leftMargin: 6
             spacing: 6
 
             Label {
@@ -75,7 +69,7 @@ Rectangle {
             TextField {
                 id: serverAddressField
 
-                text: qsTr("127.0.0.1")
+                //text: qsTr("192.168.1.199")
                 z: 1
             }
 
@@ -87,6 +81,7 @@ Rectangle {
 
         Row {
             id: delayRow
+            visible: false
             spacing: 6
 
             Label {
@@ -108,6 +103,7 @@ Rectangle {
 
         Row {
             id: fileRow
+            visible: false
             spacing: 6
 
             Label {
@@ -128,12 +124,13 @@ Rectangle {
 
             Button {
                 id: playButton
-                text: qsTr("Play")
+                text: qsTr("Test")
             }
 
             Button {
                 id: stopButton
                 text: qsTr("Stop")
+                visible: false
             }
         }
 

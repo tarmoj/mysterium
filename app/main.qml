@@ -8,18 +8,6 @@ import Qt.labs.settings 1.0
 import Qt.labs.platform 1.0
 
 
-/*
-
-TODO: copy resource to temporary file for Linux/desktop at all
-- settings to save folder, file, IP
-- try loading large wav files
-- starter to the same project?? How? Different main.cpp-s?
-- android - keep awake
-!Test, test
-- have a look at the Avanti score!
-  */
-
-
 ApplicationWindow {
     visible: true
     width: 500
@@ -33,10 +21,14 @@ ApplicationWindow {
         //property alias lastFile: sound.source
         //property alias lastFolder: fileDialog.folder
         property alias delay: page.delay
-        //property alias nameIndex: page.nameCombobox.currentIndex
+        property alias playerIndex: page.playerIndex
     }
 
     Component.onCompleted: {
+        page.serverAddressField.text = socket.serverIP
+        page.fileNameField.text = sound.source
+        page.delaySpinbox.value = page.delay
+        page.nameCombobox.currentIndex = page.playerIndex
         if (!socket.active) {
             if (page.serverAddressField.text==socket.serverIP) {
                 socket.active = true
@@ -44,16 +36,12 @@ ApplicationWindow {
                 socket.serverIP = page.serverAddressField.text // this should activate the socket as well, since server.url is bound to serverIP
             }
         }
-        page.serverAddressField.text = socket.serverIP
-        page.fileNameField.text = sound.source
-        page.delaySpinbox.value = page.delay
-        //page.nameCombobox.currentText = settings.name
     }
 
     WebSocket {
         id: socket
-        property string serverIP: "192.168.1.199"
-        url: "ws://"+serverIP+":7007/ws" //"ws://192.168.1.199:6006/ws"
+        property string serverIP: "192.168.1.201"
+        url: "ws://"+serverIP+":7007/ws"
 
         onTextMessageReceived: {
             console.log(message)
@@ -136,6 +124,7 @@ ApplicationWindow {
 
     MainForm {
         id: page;
+        property string playerIndex: nameCombobox.currentIndex
         property int delay: delaySpinbox.value
         anchors.fill: parent
 

@@ -3,10 +3,6 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>MainForm.ui.qml</file>
-        <file>commands/1.mp3</file>
-        <file>commands/2.mp3</file>
-        <file>commands/3.mp3</file>
-        <file>commands/4.mp3</file>
         <file>commands/YLD_01.mp3</file>
         <file>commands/YLD_02.mp3</file>
         <file>commands/YLD_03.mp3</file>
@@ -46,6 +42,44 @@
         <file>commands/YLD_38.mp3</file>
         <file>commands/YLD_39.mp3</file>
         <file>main.cpp</file>
+        <file>commands/FL_CL_01.mp3</file>
+        <file>commands/FL_CL_02.mp3</file>
+        <file>commands/FL_CL_03.mp3</file>
+        <file>commands/FL_CL_04.mp3</file>
+        <file>commands/FL_CL_05.mp3</file>
+        <file>commands/FL_CL_06.mp3</file>
+        <file>commands/FL_CL_07.mp3</file>
+        <file>commands/PERC_01.mp3</file>
+        <file>commands/PERC_03.mp3</file>
+        <file>commands/PERC_04.mp3</file>
+        <file>commands/PERC_05.mp3</file>
+        <file>commands/PERC_06.mp3</file>
+        <file>commands/PERC_07.mp3</file>
+        <file>commands/PERC_08.mp3</file>
+        <file>commands/PERC_09.mp3</file>
+        <file>commands/PERC_10.mp3</file>
+        <file>commands/PERC_11.mp3</file>
+        <file>commands/PNO_01.mp3</file>
+        <file>commands/PNO_02.mp3</file>
+        <file>commands/PNO_03.mp3</file>
+        <file>commands/PNO_04.mp3</file>
+        <file>commands/SUU_01.mp3</file>
+        <file>commands/SUU_02.mp3</file>
+        <file>commands/SUU_03.mp3</file>
+        <file>commands/SUU_04.mp3</file>
+        <file>commands/SUU_05.mp3</file>
+        <file>commands/SUU_06.mp3</file>
+        <file>commands/SUU_07.mp3</file>
+        <file>commands/SUU_08.mp3</file>
+        <file>commands/VNO_VC_01.mp3</file>
+        <file>commands/VNO_VC_02.mp3</file>
+        <file>commands/VNO_VC_03.mp3</file>
+        <file>commands/VNO_VC_04.mp3</file>
+        <file>commands/VNO_VC_05.mp3</file>
+        <file>commands/VNO_VC_06.mp3</file>
+        <file>commands/VNO_VC_07.mp3</file>
+        <file>commands/VNO_VC_08.mp3</file>
+        <file>commands/YLD_24.mp3</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>track1.mp3</file>
