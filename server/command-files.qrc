@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>command-files/helena.commands</file>
+        <file>command-files/levi.commands</file>
+        <file>command-files/merje.commands</file>
+        <file>command-files/taavi.commands</file>
+        <file>command-files/tarmo.commands</file>
+        <file>command-files/vambola.commands</file>
+    </qresource>
+</RCC>

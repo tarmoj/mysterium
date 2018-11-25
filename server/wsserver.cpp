@@ -28,7 +28,7 @@ WsServer::WsServer(quint16 port, QObject *parent) :
     connect(&timer, SIGNAL(timeout()), this, SLOT(counterChanged()) );
     for (int i=0;i<6;i++) {
         players << new Player(this, i);
-        //create commmand lists etc in the constructor of Player
+        connect(players[i], SIGNAL(sendCommand(int, QString)), this, SIGNAL(sendCommand(int, QString)));
     }
 
 
@@ -130,10 +130,4 @@ void WsServer::sendToAll(QString message )
 
 }
 
-void WsServer::resetEventCounters()
-{
-    for (Player * player: players ) {
-        player->resetEventCounter();
-    }
-}
 

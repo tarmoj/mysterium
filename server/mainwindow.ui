@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1099</width>
-    <height>628</height>
+    <width>606</width>
+    <height>689</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -131,48 +131,46 @@
      <rect>
       <x>10</x>
       <y>260</y>
-      <width>1061</width>
-      <height>241</height>
+      <width>581</width>
+      <height>351</height>
      </rect>
     </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>450</number>
+    </attribute>
     <row>
-     <property name="text">
-      <string>Käsk</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>Järgmine</string>
-     </property>
-    </row>
-    <column>
      <property name="text">
       <string>Tarmo</string>
      </property>
-    </column>
-    <column>
+    </row>
+    <row>
      <property name="text">
       <string>Helena</string>
      </property>
-    </column>
-    <column>
+    </row>
+    <row>
      <property name="text">
       <string>Merje</string>
      </property>
-    </column>
-    <column>
+    </row>
+    <row>
      <property name="text">
       <string>Levi</string>
      </property>
-    </column>
-    <column>
+    </row>
+    <row>
      <property name="text">
       <string>Taavi</string>
      </property>
-    </column>
-    <column>
+    </row>
+    <row>
      <property name="text">
       <string>Vambola</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Käsk</string>
      </property>
     </column>
    </widget>
@@ -182,7 +180,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1099</width>
+     <width>606</width>
      <height>33</height>
     </rect>
    </property>

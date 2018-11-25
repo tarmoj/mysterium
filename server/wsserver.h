@@ -39,6 +39,7 @@ Q_SIGNALS:
     void closed();
     void newConnection(int connectionsCount);
     void newCounter(int counter);
+    void sendCommand(int playerIndex, QString commandString);
 
 private Q_SLOTS:
     void onNewConnection();

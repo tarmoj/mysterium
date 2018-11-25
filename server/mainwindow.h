@@ -31,6 +31,8 @@ private slots:
 
     void showCounter(int value);
 
+    void showCommand(int player, QString commandString);
+
 private:
 	Ui::MainWindow *ui;
 	WsServer * wsServer;

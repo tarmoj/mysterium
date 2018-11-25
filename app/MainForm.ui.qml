@@ -7,13 +7,13 @@ Rectangle {
     property alias connectButton: connectButton
     property alias serverAddressField: serverAddressField
     property alias fileNameField: fileNameField
-    property alias timeLabel: timeLabel
     property alias statusLabel: statusLabel
     property alias playButton: playButton
     property alias stopButton: stopButton
-    width: 660
-    height: 300
+    width: 400
+    height: 500
     color: "#0e4248"
+    property alias commandLabel: commandLabel
     property alias nameCombobox: nameCombobox
     property alias updateButton: updateButton
     property alias delaySpinbox: delaySpinbox
@@ -164,7 +164,7 @@ Rectangle {
             }
 
             Label {
-                id: timeLabel
+                id: commandLabel
                 text: qsTr("0")
                 font.bold: true
                 font.pointSize: 20

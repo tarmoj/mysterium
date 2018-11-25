@@ -29,3 +29,6 @@ macx {
     INSTALLS = deploy
 
 }
+
+RESOURCES += \
+    command-files.qrc

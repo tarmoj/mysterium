@@ -3,10 +3,49 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>MainForm.ui.qml</file>
-		<file>commands/1.mp3</file>
+        <file>commands/1.mp3</file>
         <file>commands/2.mp3</file>
         <file>commands/3.mp3</file>
         <file>commands/4.mp3</file>
+        <file>commands/YLD_01.mp3</file>
+        <file>commands/YLD_02.mp3</file>
+        <file>commands/YLD_03.mp3</file>
+        <file>commands/YLD_04.mp3</file>
+        <file>commands/YLD_05.mp3</file>
+        <file>commands/YLD_06.mp3</file>
+        <file>commands/YLD_07.mp3</file>
+        <file>commands/YLD_08.mp3</file>
+        <file>commands/YLD_09.mp3</file>
+        <file>commands/YLD_10.mp3</file>
+        <file>commands/YLD_11.mp3</file>
+        <file>commands/YLD_12.mp3</file>
+        <file>commands/YLD_13.mp3</file>
+        <file>commands/YLD_14.mp3</file>
+        <file>commands/YLD_15.mp3</file>
+        <file>commands/YLD_16.mp3</file>
+        <file>commands/YLD_17.mp3</file>
+        <file>commands/YLD_18.mp3</file>
+        <file>commands/YLD_19.mp3</file>
+        <file>commands/YLD_20.mp3</file>
+        <file>commands/YLD_21.mp3</file>
+        <file>commands/YLD_22.mp3</file>
+        <file>commands/YLD_23.mp3</file>
+        <file>commands/YLD_25.mp3</file>
+        <file>commands/YLD_26.mp3</file>
+        <file>commands/YLD_27.mp3</file>
+        <file>commands/YLD_28.mp3</file>
+        <file>commands/YLD_29.mp3</file>
+        <file>commands/YLD_30.mp3</file>
+        <file>commands/YLD_31.mp3</file>
+        <file>commands/YLD_32.mp3</file>
+        <file>commands/YLD_33.mp3</file>
+        <file>commands/YLD_34.mp3</file>
+        <file>commands/YLD_35.mp3</file>
+        <file>commands/YLD_36.mp3</file>
+        <file>commands/YLD_37.mp3</file>
+        <file>commands/YLD_38.mp3</file>
+        <file>commands/YLD_39.mp3</file>
+        <file>main.cpp</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>track1.mp3</file>

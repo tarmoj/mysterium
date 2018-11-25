@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <QObject>
+#include <QHash>
 
 class WsServer;
 
@@ -15,21 +16,20 @@ class Player : public QObject
 public:
     Player(QObject *parent , int _playerIndex);
     //~Player();
+    void loadCommands();
 
 public slots:
     void checkEvents();
-    void resetEventCounter() { eventCounter = 0; }
 
 signals:
-    void sendCommand(int playerIndex, int commandNumber, QString commandString);
+    void sendCommand(int playerIndex, QString commandString);
 
 
 private:
     QList <QPair <int,int>>  events;
-    int eventCounter;
     int playerIndex;
     WsServer * server;
-    QStringList commands;
+    QHash <int, QPair<QString, QString> > commandHash;
 };
 
 #endif // PLAYER_H

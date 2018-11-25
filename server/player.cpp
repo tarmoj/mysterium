@@ -3,42 +3,67 @@
 #include <QtDebug>
 #include <QWebSocketServer>
 #include <QWebSocket>
+#include <QFile>
 
 QT_USE_NAMESPACE
 
 
 Player::Player(QObject *parent, int _playerIndex ):
-    QObject(parent), eventCounter(0), playerIndex(_playerIndex)
+    QObject(parent), playerIndex(_playerIndex)
 {
     server = qobject_cast<WsServer*>(parent);
+    loadCommands();
+}
 
-    events << qMakePair(2,1) << qMakePair(4,2) << qMakePair(6,3) << qMakePair(10,4)
-            << qMakePair(12,1) << qMakePair(14,2) << qMakePair(16,3) << qMakePair(20,4)
-             << qMakePair(22,1) << qMakePair(24,2) << qMakePair(26,3) << qMakePair(30,4)
-             << qMakePair(-1, -1);
+void Player::loadCommands()
+{
+    QStringList filenames = QStringList()<<"tarmo.commands"<< "helena.commands" << "merje.commands"
+                                        << "levi.commands" << "taavi.commands" << "vambola.commands";
+    QString fileName = ":/command-files/"+filenames[playerIndex];
+    QFile inputFile(fileName);
+    if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+       QTextStream in(&inputFile);
+       int counter = 0;
+       while (!in.atEnd())
+       {
+          QString line = in.readLine();
+          QStringList fields = line.split("\t");
 
-    commands << "Hüppa" << "Puhu" << "Seisa" << "Ehita";
+          if (fields.count()>=3) {
+              bool intOk;
+              int time = fields[0].toInt(&intOk);
+              if (intOk) {
+                  QString code = fields[1], command = fields[2];
+                  commandHash[time] =  QPair <QString, QString>(code, command);
+                  counter++;
+              }
+          }
+       }
+       qDebug()<<"Added " << counter << "commands";
+       inputFile.close();
+    } else {
+        qDebug()<<"Could not open file " <<fileName;
+    }
 }
 
 void Player::checkEvents()
 {
-   if ( eventCounter<events.size()-1 ) { // last one not fired?
-        while (server->counter == events[eventCounter].first) { // since there can be several command on one beat
-            // first -  time, second, command
-            //emit sendCommand(playerIndex, events[eventCounter].second, commands[events[eventCounter].second]);
-            //int time = events[eventCounter].first, command =  events[eventCounter].second;
-            qDebug()<<QString("Saadan koodi %1 mängijale %2").arg(events[eventCounter].second).arg(playerIndex);
+    QHash< int,  QPair <QString,QString> >::const_iterator foundHash = commandHash.find(server->counter);
+    if (foundHash == commandHash.end()) {
+        qDebug()<< "On counter " << server->counter << " no event";
+    } else {
+        QPair <QString,QString> event = foundHash.value();
+        if ( !event.first.isEmpty() && !event.second.isEmpty() ) {
+            qDebug()<<QString("Saadan koodi %1 mängijale %2").arg(event.first).arg(playerIndex);
+            emit sendCommand(playerIndex, event.second);
             if (server) {
                 if (server->playerSockets[playerIndex]) {
                     server->playerSockets[playerIndex]->sendTextMessage(
-                                "command " + QString::number(events[eventCounter].second));
-
+                                "command " + event.first); // send the code. filename is code + ".mp3"
                 }
-
             }
-            eventCounter++;
         }
     }
-
 }
 

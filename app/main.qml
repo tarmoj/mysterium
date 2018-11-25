@@ -61,6 +61,7 @@ ApplicationWindow {
             if (messageParts[0]==="command") {
                 sound.source = "qrc:///commands/"+messageParts[1]+".mp3"
                 console.log(sound.source)
+                page.commandLabel.text = messageParts[1];
                 //playTimer.start();
                 sound.play()
             }
@@ -103,7 +104,7 @@ ApplicationWindow {
     Audio {
         id: sound
         property int seekPosition: 0 // in ms
-        source: "qrc:///commands/1.mp3" //StandardPaths.writableLocation(7) + "/track1.mp3";  // 7- TempLocaton, see QStandardPaths must be copied there in main.cpp //
+        source: "qrc:///commands/YLD_01.mp3" //StandardPaths.writableLocation(7) + "/track1.mp3";  // 7- TempLocaton, see QStandardPaths must be copied there in main.cpp //
         onStatusChanged: {
             console.log("sound status: ",status)
             if (status == Audio.Loading || status == Audio.Buffering) {
