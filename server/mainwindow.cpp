@@ -61,6 +61,10 @@ void MainWindow::on_speedDial_valueChanged(int value)
 void MainWindow::showCounter(int value)
 {
     ui->counterLabel->setText(QString::number(value));
+	if (value > 3744) {
+		qDebug() << "Stop. Should be over";
+		on_stopButton_clicked(); // then stop
+	}
 }
 
 void MainWindow::showCommand(int player, QString commandString)

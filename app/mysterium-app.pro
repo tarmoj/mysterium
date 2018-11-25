@@ -1,3 +1,5 @@
+# Logo: shaman by Gan Khoon Lay from the Noun Project
+
 QT += qml quick widgets core multimedia websockets
 android: QT += androidextras
 

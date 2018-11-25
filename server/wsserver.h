@@ -11,10 +11,10 @@ QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
 #define TARMO 0
 #define HELENA 1
-#define MERJE 1
-#define LEVI 1
-#define TAAVI 5
-#define VAMBOLA 6
+#define MERJE 2
+#define LEVI 3
+#define TAAVI 4
+#define VAMBOLA 5
 
 
 class Player;

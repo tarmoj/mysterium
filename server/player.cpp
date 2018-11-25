@@ -51,7 +51,7 @@ void Player::checkEvents()
 {
     QHash< int,  QPair <QString,QString> >::const_iterator foundHash = commandHash.find(server->counter);
     if (foundHash == commandHash.end()) {
-        qDebug()<< "On counter " << server->counter << " no event";
+		//qDebug()<< "On counter " << server->counter << " no event";
     } else {
         QPair <QString,QString> event = foundHash.value();
         if ( !event.first.isEmpty() && !event.second.isEmpty() ) {

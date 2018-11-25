@@ -40,7 +40,7 @@ ApplicationWindow {
 
     WebSocket {
         id: socket
-        property string serverIP: "192.168.1.201"
+        property string serverIP: "192.168.1.199"
         url: "ws://"+serverIP+":7007/ws"
 
         onTextMessageReceived: {
