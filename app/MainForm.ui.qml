@@ -129,8 +129,8 @@ Rectangle {
 
             Button {
                 id: stopButton
-                text: qsTr("Stop")
-                visible: false
+                text: qsTr("Play2")
+                visible: true
             }
         }
 

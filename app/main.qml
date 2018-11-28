@@ -88,11 +88,15 @@ ApplicationWindow {
         onTriggered: {console.log("Delay: ", interval); sound.play() }
     }
 
+    function playOnFirstFreeAudio(file) {
+
+    }
 
     Audio {
         id: sound
         property int seekPosition: 0 // in ms
-        source: "qrc:///commands/YLD_01.mp3" //StandardPaths.writableLocation(7) + "/track1.mp3";  // 7- TempLocaton, see QStandardPaths must be copied there in main.cpp //
+        source: "qrc:///commands/YLD_01.mp3"
+/*
         onStatusChanged: {
             console.log("sound status: ",status)
             if (status == Audio.Loading || status == Audio.Buffering) {
@@ -119,7 +123,17 @@ ApplicationWindow {
             if (playbackState==Audio.StoppedState)
                 page.statusLabel.text = "Stopped"
         }
+*/
+    }
 
+    Audio {
+        id: sound2
+        //source: "qrc:///commands/YLD_04.mp3"
+    }
+
+    Audio {
+        id: sound3
+        //source: "qrc:///commands/YLD_05.mp3"
     }
 
     MainForm {
@@ -131,8 +145,10 @@ ApplicationWindow {
         playButton.onClicked: {
             sound.play()
         }
+
         stopButton.onClicked: {
-            sound.stop()
+            sound2.play()
+            //sound.stop()
         }
 
         updateButton.onClicked: {
