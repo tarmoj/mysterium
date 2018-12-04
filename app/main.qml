@@ -42,17 +42,20 @@ ApplicationWindow {
         id: socket
         property string serverIP: "192.168.1.199"
         url: "ws://"+serverIP+":7007/ws"
-
         onTextMessageReceived: {
             console.log(message)
             var messageParts = message.split(" ");
             if (messageParts[0]==="command") {
-                var fileName = "qrc:///commands/"+messageParts[1]+".mp3"
-                //sound.source = "qrc:///commands/"+messageParts[1]+".mp3"
-                console.log(sound.source)
+                var fileName;
+                if (messageParts[1] === ("YLD_02") ) { // steps -  names YLD_02_01 etc ... YLD_02_09
+                    var number = 1 + Math.floor((Math.random()*9))
+                    console.log("Random step file no: ", number)
+                    fileName = "qrc:///commands/YLD_02_0"+number.toString()+".mp3"
+                } else {
+                    fileName = "qrc:///commands/"+messageParts[1]+".mp3"
+                }
+                console.log(fileName)
                 page.commandLabel.text = messageParts[1];
-                //playTimer.start();
-                // sound.play()
                 playOnFirstFreeAudio(fileName)
             }
         }

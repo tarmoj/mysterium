@@ -33,6 +33,8 @@ private slots:
 
     void showCommand(int player, QString commandString);
 
+	void on_testButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
 	WsServer * wsServer;

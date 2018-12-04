@@ -86,3 +86,8 @@ void MainWindow::updateCounter(int value)
     showCounter(value);
 
 }
+
+void MainWindow::on_testButton_clicked()
+{
+	wsServer->sendToAll("command YLD_02");
+}
