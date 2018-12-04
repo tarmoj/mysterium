@@ -47,11 +47,13 @@ ApplicationWindow {
             console.log(message)
             var messageParts = message.split(" ");
             if (messageParts[0]==="command") {
-                sound.source = "qrc:///commands/"+messageParts[1]+".mp3"
+                var fileName = "qrc:///commands/"+messageParts[1]+".mp3"
+                //sound.source = "qrc:///commands/"+messageParts[1]+".mp3"
                 console.log(sound.source)
                 page.commandLabel.text = messageParts[1];
                 //playTimer.start();
-                sound.play()
+                // sound.play()
+                playOnFirstFreeAudio(fileName)
             }
         }
 
@@ -89,7 +91,25 @@ ApplicationWindow {
     }
 
     function playOnFirstFreeAudio(file) {
+        var player = sound;
+        if (sound.playbackState === Audio.PlayingState ) {
+            console.log("sound playing")
+            player = sound2
+            if (sound2.playbackState === Audio.PlayingState ) {
+                console.log("sound2 playing")
+                player = sound3
+                if (sound3.playbackState === Audio.PlayingState) {
+                    console.log("sound3 playing too, no free audio object...")
+                    return
+                }
+            }
 
+        } else {
+            console.log("sound not playing")
+        }
+
+        player.source = file
+        player.play()
     }
 
     Audio {
@@ -124,11 +144,12 @@ ApplicationWindow {
                 page.statusLabel.text = "Stopped"
         }
 */
+
     }
 
     Audio {
         id: sound2
-        //source: "qrc:///commands/YLD_04.mp3"
+        source: "qrc:///commands/YLD_04.mp3"
     }
 
     Audio {
@@ -143,11 +164,13 @@ ApplicationWindow {
         anchors.fill: parent
 
         playButton.onClicked: {
-            sound.play()
+            //sound.play()
+            playOnFirstFreeAudio("qrc:///commands/YLD_04.mp3")
         }
 
         stopButton.onClicked: {
-            sound2.play()
+            playOnFirstFreeAudio("qrc:///commands/YLD_05.mp3")
+            //sound2.play()
             //sound.stop()
         }
 

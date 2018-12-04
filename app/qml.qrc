@@ -4,7 +4,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>MainForm.ui.qml</file>
         <file>commands/YLD_01.mp3</file>
-        <file>commands/YLD_02.mp3</file>
         <file>commands/YLD_03.mp3</file>
         <file>commands/YLD_04.mp3</file>
         <file>commands/YLD_05.mp3</file>
@@ -80,8 +79,16 @@
         <file>commands/VNO_VC_07.mp3</file>
         <file>commands/VNO_VC_08.mp3</file>
         <file>commands/YLD_24.mp3</file>
+        <file>commands/PERC_02.mp3</file>
+        <file>commands/YLD_02_01.mp3</file>
+        <file>commands/YLD_02_02.mp3</file>
+        <file>commands/YLD_02_03.mp3</file>
+        <file>commands/YLD_02_04.mp3</file>
+        <file>commands/YLD_02_05.mp3</file>
+        <file>commands/YLD_02_06.mp3</file>
+        <file>commands/YLD_02_07.mp3</file>
+        <file>commands/YLD_02_08.mp3</file>
+        <file>commands/YLD_02_09.mp3</file>
     </qresource>
-    <qresource prefix="/sounds">
-        <file>track1.mp3</file>
-    </qresource>
+    <qresource prefix="/sounds"/>
 </RCC>
