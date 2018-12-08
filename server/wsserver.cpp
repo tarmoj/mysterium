@@ -68,21 +68,45 @@ void WsServer::processTextMessage(QString message) // message must be an array o
 	qDebug()<<"Message received: "<<message;
 	QStringList messageParts = message.split(",");
     if (messageParts[0].toLower()=="tarmo") {
-        playerSockets[TARMO] = pClient;
+		int index = playerSockets.indexOf(pClient);
+		if (index>0) { // remove the old one if player changed the name
+			playerSockets[index] = nullptr;
+		}
+		playerSockets[TARMO] = pClient;
     }
     if (messageParts[0].toLower()=="helena") {
+		int index = playerSockets.indexOf(pClient); // stupid copy, rather use another function. But copying is faster...
+		if (index>=0) { // remove the old one if player changed the name
+			playerSockets[index] = nullptr;
+		}
         playerSockets[HELENA] = pClient;
     }
     if (messageParts[0].toLower()=="merje") {
+		int index = playerSockets.indexOf(pClient);
+		if (index>=0) { // remove the old one if player changed the name
+			playerSockets[index] = nullptr;
+		}
         playerSockets[MERJE] = pClient;
     }
     if (messageParts[0].toLower()=="levi") {
+		int index = playerSockets.indexOf(pClient);
+		if (index>=0) { // remove the old one if player changed the name
+			playerSockets[index] = nullptr;
+		}
         playerSockets[LEVI] = pClient;
     }
     if (messageParts[0].toLower()=="taavi") {
+		int index = playerSockets.indexOf(pClient);
+		if (index>=0) { // remove the old one if player changed the name
+			playerSockets[index] = nullptr;
+		}
         playerSockets[TAAVI] = pClient;
     }
     if (messageParts[0].toLower()=="vambola") {
+		int index = playerSockets.indexOf(pClient);
+		if (index>=0) { // remove the old one if player changed the name
+			playerSockets[index] = nullptr;
+		}
         playerSockets[VAMBOLA] = pClient;
     }
 

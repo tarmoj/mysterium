@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.2
 import QtMultimedia 5.5
@@ -46,14 +46,14 @@ ApplicationWindow {
             console.log(message)
             var messageParts = message.split(" ");
             if (messageParts[0]==="command") {
-                var fileName;
-                if (messageParts[1] === ("YLD_02") ) { // steps -  names YLD_02_01 etc ... YLD_02_09
-                    var number = 1 + Math.floor((Math.random()*9))
-                    console.log("Random step file no: ", number)
-                    fileName = "qrc:///commands/YLD_02_0"+number.toString()+".mp3"
-                } else {
-                    fileName = "qrc:///commands/"+messageParts[1]+".mp3"
-                }
+                var fileName = "qrc:///commands/"+messageParts[1]+".mp3";
+//                if (messageParts[1] === ("YLD_02") ) { // steps -  names YLD_02_01 etc ... YLD_02_09
+//                    var number = 1 + Math.floor((Math.random()*9))
+//                    console.log("Random step file no: ", number)
+//                    fileName = "qrc:///commands/YLD_02_0"+number.toString()+".mp3"
+//                } else {
+//                    fileName = "qrc:///commands/"+messageParts[1]+".mp3"
+//                }
                 console.log(fileName)
                 page.commandLabel.text = messageParts[1];
                 playOnFirstFreeAudio(fileName)
@@ -82,15 +82,8 @@ ApplicationWindow {
                              //page.connectButton.enabled = false
                          }
 
-            active: false
+        active: false
 
-    }
-
-    Timer {
-        id: playTimer
-        interval: page.delay
-        repeat: false
-        onTriggered: {console.log("Delay: ", interval); sound.play() }
     }
 
     function playOnFirstFreeAudio(file) {
@@ -119,35 +112,6 @@ ApplicationWindow {
         id: sound
         property int seekPosition: 0 // in ms
         source: "qrc:///commands/YLD_01.mp3"
-/*
-        onStatusChanged: {
-            console.log("sound status: ",status)
-            if (status == Audio.Loading || status == Audio.Buffering) {
-                console.log("Loading")
-                page.statusLabel.text = "Loading";
-            }
-            if (status == Audio.Loaded) {
-                console.log("Loaded")
-                page.statusLabel.text = "Loaded";
-            }
-
-            if (status == Audio.EndOfMedia) {
-                console.log("End of Media")
-                page.statusLabel.text = "End of media";
-            }
-
-        }
-
-        onPlaybackStateChanged:  {
-            if (playbackState==Audio.PlayingState)
-                page.statusLabel.text = "Playing"
-            if (playbackState==Audio.PausedState)
-                page.statusLabel.text = "Paused"
-            if (playbackState==Audio.StoppedState)
-                page.statusLabel.text = "Stopped"
-        }
-*/
-
     }
 
     Audio {
@@ -159,37 +123,63 @@ ApplicationWindow {
         id: sound3
         //source: "qrc:///commands/YLD_05.mp3"
     }
+    SwipeView {
+        anchors.fill:parent
 
-    MainForm {
-        id: page;
-        property string playerIndex: nameCombobox.currentIndex
-        property int delay: delaySpinbox.value
-        anchors.fill: parent
+        Page {
+            MainForm {
+                id: page;
+                property string playerIndex: nameCombobox.currentIndex
+                property int delay: delaySpinbox.value
+                anchors.fill: parent
 
-        playButton.onClicked: {
-            //sound.play()
-            playOnFirstFreeAudio("qrc:///commands/YLD_04.mp3")
-        }
-
-        stopButton.onClicked: {
-            playOnFirstFreeAudio("qrc:///commands/YLD_05.mp3")
-            //sound2.play()
-            //sound.stop()
-        }
-
-        updateButton.onClicked: {
-            socket.sendTextMessage(page.nameCombobox.currentText )
-        }
-
-        connectButton.onClicked: {
-            if (!socket.active) {
-                if (page.serverAddressField.text==socket.serverIP) {
-                    socket.active = true
-                } else {
-                    socket.serverIP = page.serverAddressField.text // this should activate the socket as well, since server.url is bound to serverIP
+                playButton.onClicked: {
+                    //sound.play()
+                    playOnFirstFreeAudio("qrc:///commands/YLD_04.mp3")
                 }
-                //console.log("Connecting to ",serverAddress.text, "Socket status: ", socket.status)
+
+                stopButton.onClicked: {
+                    playOnFirstFreeAudio("qrc:///commands/YLD_05.mp3")
+                    //sound2.play()
+                    //sound.stop()
+                }
+
+                updateButton.onClicked: {
+                    socket.sendTextMessage(page.nameCombobox.currentText )
+                }
+
+                connectButton.onClicked: {
+                    if (!socket.active) {
+                        if (page.serverAddressField.text==socket.serverIP) {
+                            socket.active = true
+                        } else {
+                            socket.serverIP = page.serverAddressField.text // this should activate the socket as well, since server.url is bound to serverIP
+                        }
+                        //console.log("Connecting to ",serverAddress.text, "Socket status: ", socket.status)
+                    }
+                }
             }
+
+        }
+
+        Page {
+            Rectangle {
+                anchors.fill: parent
+                color:
+                    "#304d4b"
+            }
+
+            Label {
+                id: connectedLabel2
+                text: socket.active ? "Ühendatud" : "Pole ühendatud"
+            }
+
+            Label {
+                anchors.centerIn: parent
+                text: page.commandLabel.text
+                font.pointSize: 32
+            }
+
         }
     }
 
