@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHash>
+#include <QMultiHash>
 
 class WsServer;
 
@@ -29,7 +30,7 @@ private:
     QList <QPair <int,int>>  events;
     int playerIndex;
     WsServer * server;
-    QHash <int, QPair<QString, QString> > commandHash;
+	QMultiHash <int, QPair<QString, QString> > commandHash;
 };
 
 #endif // PLAYER_H
