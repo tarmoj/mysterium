@@ -30,5 +30,13 @@ macx {
 
 }
 
+
+win32 {
+    first.path = $$PWD
+    first.commands = $$[QT_INSTALL_PREFIX]/bin/windeployqt  -qmldir=$$PWD  $$OUT_PWD/$$DESTDIR/release/$${TARGET}.exe # first deployment
+    INSTALLS += first
+}
+
+
 RESOURCES += \
     command-files.qrc
