@@ -171,7 +171,7 @@ ApplicationWindow {
 
             Label {
                 id: connectedLabel2
-                text: socket.active ? "Ühendatud" : "Pole ühendatud"
+                text: (socket.status == WebSocket.Open) ? "Ühendatud" : "Pole ühendatud"
             }
 
             Label {
