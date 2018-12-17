@@ -39,6 +39,10 @@ Rectangle {
         anchors.right: parent.right
         anchors.left: parent.left
 
+        Label {
+            text: "Version 0.1.2"
+        }
+
         Row {
             id: nameRow
             spacing: 6

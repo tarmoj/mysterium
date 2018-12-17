@@ -125,6 +125,7 @@ ApplicationWindow {
     }
     SwipeView {
         anchors.fill:parent
+        currentIndex: 1
 
         Page {
             MainForm {
