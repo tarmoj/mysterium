@@ -48,7 +48,7 @@ void MainWindow::setClientCount(int count)
 
 void MainWindow::on_resetButton_clicked()
 {
-    ui->startFromSpinBox->setValue(0);
+	ui->startFromSpinBox->setValue(-10);
 }
 
 void MainWindow::on_speedDial_valueChanged(int value)
@@ -61,9 +61,10 @@ void MainWindow::on_speedDial_valueChanged(int value)
 void MainWindow::showCounter(int value)
 {
     ui->counterLabel->setText(QString::number(value));
-	if (value > 3744) {
+	if (value > 3752) {
 		qDebug() << "Stop. Should be over";
-		on_stopButton_clicked(); // then stop
+		wsServer->timer.stop();
+		//on_stopButton_clicked(); // then stop
 	}
 }
 

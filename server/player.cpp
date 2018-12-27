@@ -53,7 +53,7 @@ void Player::checkEvents()
 	while (foundHash != commandHash.end() && foundHash.key() == server->counter) {
 		  QPair <QString,QString> event = foundHash.value();
 		  if ( !event.first.isEmpty() && !event.second.isEmpty() ) {
-			  qDebug()<<QString("Saadan koodi %1 mängijale %2").arg(event.first).arg(playerIndex);
+			  qDebug()<<QString("Saadan koodi %1 mängijale %2 löögil %3").arg(event.first).arg(playerIndex).arg(server->counter);
 			  emit sendCommand(playerIndex, event.second);
 			  if (server) {
 				  if (server->playerSockets[playerIndex]) {

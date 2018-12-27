@@ -12,7 +12,7 @@ QT_USE_NAMESPACE
 
 WsServer::WsServer(quint16 port, QObject *parent) :
     QObject(parent),
-    counter(0),
+	counter(-10),
 	m_pWebSocketServer(new QWebSocketServer(QStringLiteral("BreathServer"),
                                             QWebSocketServer::NonSecureMode, this)),
     m_clients()

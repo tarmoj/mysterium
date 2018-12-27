@@ -89,6 +89,17 @@
         <file>commands/YLD_02_07.mp3</file>
         <file>commands/YLD_02_08.mp3</file>
         <file>commands/YLD_02_09.mp3</file>
+        <file>commands/YLD_ARV_006.mp3</file>
+        <file>commands/YLD_ARV_007.mp3</file>
+        <file>commands/YLD_ARV_008.mp3</file>
+        <file>commands/YLD_ARV_009.mp3</file>
+        <file>commands/YLD_ARV_010.mp3</file>
+        <file>commands/YLD_ARV_005.mp3</file>
+        <file>commands/YLD_ARV_004.mp3</file>
+        <file>commands/YLD_ARV_003.mp3</file>
+        <file>commands/YLD_ARV_002.mp3</file>
+        <file>commands/YLD_ARV_001.mp3</file>
+        <file>commands/PERC_12.mp3</file>
+        <file>commands/YLD_40.mp3</file>
     </qresource>
-    <qresource prefix="/sounds"/>
 </RCC>

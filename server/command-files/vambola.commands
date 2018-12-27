@@ -1,3 +1,13 @@
+-10	YLD_ARV_010	kümme
+-9	YLD_ARV_009	üheksa
+-8	YLD_ARV_008	kaheksa
+-7	YLD_ARV_007	seitse
+-6	YLD_ARV_006	kuus
+-5	YLD_ARV_005	viis
+-4	YLD_ARV_004	neli
+-3	YLD_ARV_003	kolm
+-2	YLD_ARV_002	kaks
+-1	YLD_ARV_001	üks
 1	YLD_24	tekita üksikuid pikki helisid
 4	YLD_25	tekita raiuvas rütmis helisid
 6	YLD_39	tiiruta kaablikõrisid ümber pea
@@ -1527,3 +1537,4 @@
 3744	YLD_10	reageeri erinevalt helidele
 3744	YLD_16	ava või sule pillikast või klaveri kaas
 3744	PERC_04	tekita "kobisevat" heli
+3750	PERC_12	mängi erinevaid gonge ja tamtami, tehes neil hiiglasliku crescendo

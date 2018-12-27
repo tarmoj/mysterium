@@ -40,7 +40,7 @@ Rectangle {
         anchors.left: parent.left
 
         Label {
-            text: "Version 0.1.2"
+            text: "Version 0.1.3"
         }
 
         Row {
