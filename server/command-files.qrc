@@ -6,5 +6,6 @@
         <file>command-files/taavi.commands</file>
         <file>command-files/tarmo.commands</file>
         <file>command-files/vambola.commands</file>
+        <file>command-files/density</file>
     </qresource>
 </RCC>

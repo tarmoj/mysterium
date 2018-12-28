@@ -6,6 +6,7 @@
 #include <QTimer>
 #include "player.h"
 
+
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
@@ -29,7 +30,9 @@ public:
 
 	void sendToAll(QString message);
     void resetEventCounters();
-    QTimer timer;
+	void loadDensities();
+	void setDensity(int density);
+	QTimer timer;
     int counter;
 	int everyNthCommand;
     QList <QWebSocket *> playerSockets;  // used by indexes -  0 FL, 1- CL, etc
@@ -41,6 +44,7 @@ Q_SIGNALS:
     void newConnection(int connectionsCount);
     void newCounter(int counter);
     void sendCommand(int playerIndex, QString commandString);
+	void newDensity(int density);
 
 private Q_SLOTS:
     void onNewConnection();
@@ -53,6 +57,7 @@ private:
     QWebSocketServer *m_pWebSocketServer;
     QList<QWebSocket *> m_clients;
     QList <Player *> players;
+	QHash <int, int> densityHash;
 
 
 };

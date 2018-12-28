@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(wsServer, SIGNAL(newConnection(int)), this, SLOT(setClientCount(int)) );
     connect(wsServer, SIGNAL(newCounter(int)), this, SLOT(showCounter(int)) );
     connect(wsServer, SIGNAL(sendCommand(int, QString)), this, SLOT(showCommand(int, QString))  );
+	connect(wsServer, SIGNAL(newDensity(int)), this, SLOT(updateDensity(int)) );
+
     on_speedDial_valueChanged(ui->speedDial->value()); // set the speed
 	on_commandRateSpinBox_valueChanged(ui->commandRateSpinBox->value());
 }
@@ -73,7 +75,7 @@ void MainWindow::showCommand(int player, QString commandString)
 {
     int testrows= ui->tableWidget->rowCount(), testcolumns = ui->tableWidget->columnCount();
 
-    qDebug()<< "MainWindow " << commandString;
+	//qDebug()<< "Command: " << commandString;
     if ( !ui->tableWidget->item(player, 0)) {
        ui->tableWidget->setItem(player,0, new QTableWidgetItem(commandString));
     } else {
@@ -97,5 +99,10 @@ void MainWindow::on_testButton_clicked()
 void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
 {
 	qDebug()<<"Send now every "<<arg1<<". command.";
-	wsServer->everyNthCommand = arg1;
+	wsServer->setDensity(arg1);
+}
+
+void MainWindow::updateDensity(int density)
+{
+	ui->commandRateSpinBox->setValue(density);
 }

@@ -3,6 +3,7 @@
 #include "QtWebSockets/qwebsocket.h"
 #include <QtCore/QDebug>
 #include "player.h"
+#include <QFile>
 
 
 
@@ -31,8 +32,7 @@ WsServer::WsServer(quint16 port, QObject *parent) :
         players << new Player(this, i);
         connect(players[i], SIGNAL(sendCommand(int, QString)), this, SIGNAL(sendCommand(int, QString)));
     }
-
-
+	loadDensities();
 }
 
 
@@ -42,8 +42,6 @@ WsServer::~WsServer()
     m_pWebSocketServer->close();
     qDeleteAll(m_clients.begin(), m_clients.end());
 }
-
-
 
 
 void WsServer::onNewConnection()
@@ -110,11 +108,7 @@ void WsServer::processTextMessage(QString message) // message must be an array o
 		}
         playerSockets[VAMBOLA] = pClient;
     }
-
-
-
 }
-
 
 
 void WsServer::socketDisconnected()
@@ -131,12 +125,18 @@ void WsServer::socketDisconnected()
     }
 }
 
-void WsServer::counterChanged()
+void WsServer::counterChanged() // timer timeOut slot
 {
    counter++;
    emit newCounter(counter);
    for (int i=0;i<players.count();i++) {
        players[i]->checkEvents();
+   }
+   //TODO: check density
+   QHash< int,  int >::const_iterator foundHash = densityHash.find(counter);
+   if (foundHash != densityHash.end() && foundHash.key() == counter) {
+	   setDensity(foundHash.value());
+	   emit newDensity(foundHash.value());
    }
 
 }
@@ -150,7 +150,47 @@ void WsServer::sendToAll(QString message )
 		{
 			socket->sendTextMessage(message);
 		}
+	}
+}
 
+void WsServer::loadDensities()
+{
+
+	QString fileName = ":/command-files/density";
+	QFile inputFile(fileName);
+	if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))
+	{
+	   QTextStream in(&inputFile);
+	   int counter = 0;
+	   while (!in.atEnd())
+	   {
+		  QString line = in.readLine();
+		  QStringList fields = line.split("\t");
+
+		  if (fields.count()>=2) {
+			  bool timeOk, densityOk;
+			  int time = fields[0].toInt(&timeOk);
+			  int density = fields[1].toInt(&densityOk);
+			  if (timeOk && densityOk) {
+				  densityHash.insert(time, density);
+				  counter++;
+			  }
+		  }
+	   }
+	   qDebug()<<"Added " << counter << "densities";
+	   inputFile.close();
+	} else {
+		qDebug()<<"Could not open file " <<fileName;
+   }
+}
+
+void WsServer::setDensity(int density)
+{
+	if (density>0 && density <= 12) {
+		everyNthCommand = density;
+		qDebug() << "Setting density to " << everyNthCommand;
+	} else {
+		qDebug() << "Illegal density value: " << density;
 	}
 
 }
