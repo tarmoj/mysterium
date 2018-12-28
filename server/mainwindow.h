@@ -35,6 +35,8 @@ private slots:
 
 	void on_testButton_clicked();
 
+	void on_commandRateSpinBox_valueChanged(int arg1);
+
 private:
 	Ui::MainWindow *ui;
 	WsServer * wsServer;

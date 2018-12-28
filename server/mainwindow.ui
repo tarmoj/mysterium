@@ -20,7 +20,7 @@
       <x>10</x>
       <y>0</y>
       <width>441</width>
-      <height>233</height>
+      <height>263</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -38,7 +38,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QPushButton" name="startButton">
        <property name="text">
         <string>Start (alates)</string>
@@ -52,7 +52,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="6" column="0">
       <widget class="QPushButton" name="stopButton">
        <property name="text">
         <string>Stop</string>
@@ -66,7 +66,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QSpinBox" name="startFromSpinBox">
        <property name="minimum">
         <number>-10</number>
@@ -109,24 +109,41 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="2">
+     <item row="6" column="2">
       <widget class="QPushButton" name="testButton">
        <property name="text">
         <string>Test</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="6" column="1">
       <widget class="QPushButton" name="seekButton">
        <property name="text">
         <string>Hüppa</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="2">
+     <item row="5" column="2">
       <widget class="QPushButton" name="resetButton">
        <property name="text">
         <string>Nulli</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Iga N. käsklus</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QSpinBox" name="commandRateSpinBox">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>5</number>
        </property>
       </widget>
      </item>

@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(wsServer, SIGNAL(newCounter(int)), this, SLOT(showCounter(int)) );
     connect(wsServer, SIGNAL(sendCommand(int, QString)), this, SLOT(showCommand(int, QString))  );
     on_speedDial_valueChanged(ui->speedDial->value()); // set the speed
+	on_commandRateSpinBox_valueChanged(ui->commandRateSpinBox->value());
 }
 
 MainWindow::~MainWindow()
@@ -91,4 +92,10 @@ void MainWindow::updateCounter(int value)
 void MainWindow::on_testButton_clicked()
 {
 	wsServer->sendToAll("command YLD_02");
+}
+
+void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
+{
+	qDebug()<<"Send now every "<<arg1<<". command.";
+	wsServer->everyNthCommand = arg1;
 }

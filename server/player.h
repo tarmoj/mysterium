@@ -34,11 +34,11 @@ private:
 		QString code, command;
 	};
 
-    QList <QPair <int,int>>  events;
+	//QList <QPair <int,int>>  events;
     int playerIndex;
     WsServer * server;
-	QMultiHash <int, QPair<QString, QString> > commandHash;
-	QMultiHash <int, EventClass> commandHash2;
+	//QMultiHash <int, QPair<QString, QString> > commandHash;
+	QMultiHash <int, EventClass> commandHash;
 };
 
 #endif // PLAYER_H

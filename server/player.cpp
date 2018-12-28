@@ -35,11 +35,10 @@ void Player::loadCommands()
               int time = fields[0].toInt(&intOk);
               if (intOk) {
                   QString code = fields[1], command = fields[2];
-				  commandHash.insert(time,  QPair <QString, QString>(code, command));
 				  EventClass event;
 				  event.index = counter;
 				  event.code = code; event.command = command;
-				  commandHash2.insert(time, event);
+				  commandHash.insert(time, event);
                   counter++;
               }
           }
@@ -53,37 +52,21 @@ void Player::loadCommands()
 
 void Player::checkEvents()
 {
-	QMultiHash< int,  QPair <QString,QString> >::const_iterator foundHash = commandHash.find(server->counter);
-	while (foundHash != commandHash.end() && foundHash.key() == server->counter) {
-		  QPair <QString,QString> event = foundHash.value();
-		  if ( !event.first.isEmpty() && !event.second.isEmpty() ) {
-			  qDebug()<<QString("Saadan koodi %1 mängijale %2 löögil %3").arg(event.first).arg(playerIndex).arg(server->counter);
-			  emit sendCommand(playerIndex, event.second);
+	QMultiHash< int,  EventClass >::const_iterator foundHash = commandHash.find(server->counter);
+	int sendNthEvent = server->everyNthCommand;
+	while (foundHash != commandHash.end() && foundHash.key() && foundHash.key() == server->counter) {
+		  EventClass event = foundHash.value();
+		  if ( !event.code.isEmpty() && !event.command.isEmpty() && (server->counter <2 || (event.index % sendNthEvent)==0 || event.code == "YLD_40" || event.code == "PERC_12")  || event.index == 0 ) { // if less than 0 -  countdown, if over 0, send only every nth event
+			  qDebug()<<QString("Saadan koodi %1 mängijale %2 löögil %3 index %4").arg(event.code).arg(playerIndex).arg(server->counter).arg(event.index);
+			  emit sendCommand(playerIndex, event.command);
 			  if (server) {
 				  if (server->playerSockets[playerIndex]) {
 					  server->playerSockets[playerIndex]->sendTextMessage(
-								  "command " + event.first); // send the code. filename is code + ".mp3"
+								  "command " + event.code); // send the code. filename is code + ".mp3"
 				  }
 			  }
 		  }
 		  ++foundHash;
 	  }
-/*    if (foundHash == commandHash.end()) {
-		//qDebug()<< "On counter " << server->counter << " no event";
-    } else {
-		//QPair <QString,QString> event = foundHash.value();
-		QList <QPair <QString, QString> events = foundHash.va
-		if ( !event.first.isEmpty() && !event.second.isEmpty() ) {
-            qDebug()<<QString("Saadan koodi %1 mängijale %2").arg(event.first).arg(playerIndex);
-            emit sendCommand(playerIndex, event.second);
-            if (server) {
-                if (server->playerSockets[playerIndex]) {
-                    server->playerSockets[playerIndex]->sendTextMessage(
-                                "command " + event.first); // send the code. filename is code + ".mp3"
-                }
-            }
-        }
-    }
-	*/
 }
 

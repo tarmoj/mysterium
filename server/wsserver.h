@@ -31,6 +31,7 @@ public:
     void resetEventCounters();
     QTimer timer;
     int counter;
+	int everyNthCommand;
     QList <QWebSocket *> playerSockets;  // used by indexes -  0 FL, 1- CL, etc
 
 
