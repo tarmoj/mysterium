@@ -27,10 +27,18 @@ signals:
 
 
 private:
+
+	class EventClass {
+	public:
+		int index;
+		QString code, command;
+	};
+
     QList <QPair <int,int>>  events;
     int playerIndex;
     WsServer * server;
 	QMultiHash <int, QPair<QString, QString> > commandHash;
+	QMultiHash <int, EventClass> commandHash2;
 };
 
 #endif // PLAYER_H

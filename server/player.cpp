@@ -36,6 +36,10 @@ void Player::loadCommands()
               if (intOk) {
                   QString code = fields[1], command = fields[2];
 				  commandHash.insert(time,  QPair <QString, QString>(code, command));
+				  EventClass event;
+				  event.index = counter;
+				  event.code = code; event.command = command;
+				  commandHash2.insert(time, event);
                   counter++;
               }
           }
