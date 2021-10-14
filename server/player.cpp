@@ -17,8 +17,8 @@ Player::Player(QObject *parent, int _playerIndex ):
 
 void Player::loadCommands()
 {
-    QStringList filenames = QStringList()<<"tarmo.commands"<< "helena.commands" << "merje.commands"
-                                        << "levi.commands" << "taavi.commands" << "vambola.commands";
+    QStringList filenames = QStringList()<<"fl.commands"<< "cl.commands" << "vl.commands"
+                                        << "vlc.commands" << "pf.commands" << "perc.commands";
     QString fileName = ":/command-files/"+filenames[playerIndex];
     QFile inputFile(fileName);
     if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))

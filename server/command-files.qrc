@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>command-files/helena.commands</file>
-        <file>command-files/levi.commands</file>
-        <file>command-files/merje.commands</file>
-        <file>command-files/taavi.commands</file>
-        <file>command-files/tarmo.commands</file>
-        <file>command-files/vambola.commands</file>
+        <file>command-files/cl.commands</file>
+        <file>command-files/vlc.commands</file>
+        <file>command-files/vl.commands</file>
+        <file>command-files/pf.commands</file>
+        <file>command-files/fl.commands</file>
+        <file>command-files/perc.commands</file>
         <file>command-files/density</file>
     </qresource>
 </RCC>

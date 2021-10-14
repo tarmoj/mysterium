@@ -10,12 +10,12 @@
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
-#define TARMO 0
-#define HELENA 1
-#define MERJE 2
-#define LEVI 3
-#define TAAVI 4
-#define VAMBOLA 5
+#define FLUTE 0
+#define CLARINET 1
+#define VIOLIN 2
+#define CELLO 3
+#define PIANO 4
+#define PERCUSSION 5
 
 
 class Player;

@@ -163,32 +163,32 @@
     </attribute>
     <row>
      <property name="text">
-      <string>Tarmo</string>
+      <string>Flööt</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Helena</string>
+      <string>Klarnet</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Merje</string>
+      <string>Viiul</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Levi</string>
+      <string>Tšello</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Taavi</string>
+      <string>Klaver</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Vambola</string>
+      <string>Löökpillid</string>
      </property>
     </row>
     <column>
@@ -204,7 +204,7 @@
      <x>0</x>
      <y>0</y>
      <width>606</width>
-     <height>39</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

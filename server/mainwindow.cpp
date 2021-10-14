@@ -5,6 +5,8 @@
 #include <QTime>
 //#include <QTableWidgetItem>
 
+// version 0.2.0 -  names changed to instruments
+
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -73,7 +75,7 @@ void MainWindow::showCounter(int value)
 
 void MainWindow::showCommand(int player, QString commandString)
 {
-    int testrows= ui->tableWidget->rowCount(), testcolumns = ui->tableWidget->columnCount();
+    //int testrows= ui->tableWidget->rowCount(), testcolumns = ui->tableWidget->columnCount();
 
 	//qDebug()<< "Command: " << commandString;
     if ( !ui->tableWidget->item(player, 0)) {
@@ -93,7 +95,7 @@ void MainWindow::updateCounter(int value)
 
 void MainWindow::on_testButton_clicked()
 {
-	wsServer->sendToAll("command YLD_02");
+    wsServer->sendToAll("command YLD_06");
 }
 
 void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)

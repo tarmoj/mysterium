@@ -8,6 +8,8 @@ QT       += core gui websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+#NB! I don't know why but on Linux QtCreator wants QT_ASSUME_STDERR_HAS_CONSOLE in the Evironment to show output in Application Output
+
 TARGET = mysterium-server
 TEMPLATE = app
 

@@ -15,7 +15,7 @@ WsServer::WsServer(quint16 port, QObject *parent) :
     QObject(parent),
 	counter(-10),
 	everyNthCommand(1),
-	m_pWebSocketServer(new QWebSocketServer(QStringLiteral("BreathServer"),
+    m_pWebSocketServer(new QWebSocketServer(QStringLiteral("MysteriumServer"),
                                             QWebSocketServer::NonSecureMode, this)),
     m_clients()
 {
@@ -66,47 +66,47 @@ void WsServer::processTextMessage(QString message) // message must be an array o
 
 	qDebug()<<"Message received: "<<message;
 	QStringList messageParts = message.split(",");
-    if (messageParts[0].toLower()=="tarmo") {
+    if (messageParts[0].toLower()=="fl") {
 		int index = playerSockets.indexOf(pClient);
 		if (index>0) { // remove the old one if player changed the name
 			playerSockets[index] = nullptr;
 		}
-		playerSockets[TARMO] = pClient;
+        playerSockets[FLUTE] = pClient;
     }
-    if (messageParts[0].toLower()=="helena") {
+    if (messageParts[0].toLower()=="cl") {
 		int index = playerSockets.indexOf(pClient); // stupid copy, rather use another function. But copying is faster...
 		if (index>=0) { // remove the old one if player changed the name
 			playerSockets[index] = nullptr;
 		}
-        playerSockets[HELENA] = pClient;
+        playerSockets[CLARINET] = pClient;
     }
-    if (messageParts[0].toLower()=="merje") {
+    if (messageParts[0].toLower()=="vl") {
 		int index = playerSockets.indexOf(pClient);
 		if (index>=0) { // remove the old one if player changed the name
 			playerSockets[index] = nullptr;
 		}
-        playerSockets[MERJE] = pClient;
+        playerSockets[VIOLIN] = pClient;
     }
-    if (messageParts[0].toLower()=="levi") {
+    if (messageParts[0].toLower()=="vlc") {
 		int index = playerSockets.indexOf(pClient);
 		if (index>=0) { // remove the old one if player changed the name
 			playerSockets[index] = nullptr;
 		}
-        playerSockets[LEVI] = pClient;
+        playerSockets[CELLO] = pClient;
     }
-    if (messageParts[0].toLower()=="taavi") {
+    if (messageParts[0].toLower()=="pf") {
 		int index = playerSockets.indexOf(pClient);
 		if (index>=0) { // remove the old one if player changed the name
 			playerSockets[index] = nullptr;
 		}
-        playerSockets[TAAVI] = pClient;
+        playerSockets[PIANO] = pClient;
     }
-    if (messageParts[0].toLower()=="vambola") {
+    if (messageParts[0].toLower()=="perc") {
 		int index = playerSockets.indexOf(pClient);
 		if (index>=0) { // remove the old one if player changed the name
 			playerSockets[index] = nullptr;
 		}
-        playerSockets[VAMBOLA] = pClient;
+        playerSockets[PERCUSSION] = pClient;
     }
 }
 
