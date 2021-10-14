@@ -14,9 +14,10 @@ Rectangle {
     height: 500
     color: "#0e4248"
     property alias commandLabel: commandLabel
-    property alias nameCombobox: nameCombobox
+    property alias playerComboBox: playerComboBox
     property alias updateButton: updateButton
     property alias delaySpinbox: delaySpinbox
+    property alias languageComboBox : languageComboBox
 
     //    gradient: Gradient {
     //        GradientStop {
@@ -40,7 +41,7 @@ Rectangle {
         anchors.left: parent.left
 
         Label {
-            text: "Version 0.1.3"
+            text: "Version 0.2.0"
         }
 
         Row {
@@ -48,16 +49,16 @@ Rectangle {
             spacing: 6
 
             Label {
-                text: "Nimi"
+                text: qsTr("Player")
             }
             ComboBox {
-                id: nameCombobox
-                model: ["Tarmo", "Helena", "Merje", "Levi", "Taavi", "Vambola"]
+                id: playerComboBox
+                model: ["fl", "cl", "vl", "vlc", "pf", "perc"]
             }
 
             Button {
                 id: updateButton
-                text: "Uuenda"
+                text: qsTr("Update")
             }
         }
 
@@ -81,6 +82,22 @@ Rectangle {
                 id: connectButton
                 text: qsTr("Connect")
             }
+        }
+
+        Row {
+            id: languageRow
+            spacing: 6
+
+            Label {
+                text: qsTr("Language:")
+            }
+
+            ComboBox {
+                id: languageComboBox
+                model: ["est", "eng"]
+            }
+
+
         }
 
         Row {

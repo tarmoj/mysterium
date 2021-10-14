@@ -9,81 +9,17 @@ import Qt.labs.platform 1.0
 
 
 ApplicationWindow {
+    id: window
     visible: true
     width: 500
     height: 400
     title: qsTr("Šamaani surm")
+    property string language: "est"  // "est" | "eng"
 
-
-    Settings {
-        id: settings
-        property alias serverIP: socket.serverIP
-        //property alias lastFile: sound.source
-        //property alias lastFolder: fileDialog.folder
-        property alias delay: page.delay
-        property alias playerIndex: page.playerIndex
-    }
-
-    Component.onCompleted: {
-        page.serverAddressField.text = socket.serverIP
-        page.fileNameField.text = sound.source
-        page.delaySpinbox.value = page.delay
-        page.nameCombobox.currentIndex = page.playerIndex
-        if (!socket.active) {
-            if (page.serverAddressField.text==socket.serverIP) {
-                socket.active = true
-            } else {
-                socket.serverIP = page.serverAddressField.text // this should activate the socket as well, since server.url is bound to serverIP
-            }
-        }
-    }
-
-    WebSocket {
-        id: socket
-        property string serverIP: "192.168.1.199"
-        url: "ws://"+serverIP+":7007/ws"
-        onTextMessageReceived: {
-            console.log(message)
-            var messageParts = message.split(" ");
-            if (messageParts[0]==="command") {
-                var fileName = "qrc:///commands/"+messageParts[1]+".mp3";
-//                if (messageParts[1] === ("YLD_02") ) { // steps -  names YLD_02_01 etc ... YLD_02_09
-//                    var number = 1 + Math.floor((Math.random()*9))
-//                    console.log("Random step file no: ", number)
-//                    fileName = "qrc:///commands/YLD_02_0"+number.toString()+".mp3"
-//                } else {
-//                    fileName = "qrc:///commands/"+messageParts[1]+".mp3"
-//                }
-                console.log(fileName)
-                page.commandLabel.text = messageParts[1];
-                playOnFirstFreeAudio(fileName)
-            }
-        }
-
-
-        onStatusChanged: if (socket.status == WebSocket.Error) {
-                             console.log("Error: " + socket.errorString)
-                             socket.active = false;
-
-                         } else if (socket.status == WebSocket.Open) {
-                             console.log("Socket open")
-                             socket.sendTextMessage(page.nameCombobox.currentText )
-                             page.connectButton.text = "Connected"
-                             page.connectButton.enabled = false
-                         } else if (socket.status == WebSocket.Closed) {
-                             console.log("Socket closed")
-                             socket.active = false;
-                             page.connectButton.text = "Connect"
-                             page.connectButton.enabled = true
-                         }
-                         else if (socket.status == WebSocket.Connecting) {
-                             console.log("Socket connecting")
-                             page.connectButton.text = "Connecting"
-                             //page.connectButton.enabled = false
-                         }
-
-        active: false
-
+    function getSoundUrl(command) {
+        var url =  "qrc:///commands/" + language + "/" + command + ".mp3";
+        //console.log("getSoundUrl: ", url);
+        return url;
     }
 
     function playOnFirstFreeAudio(file) {
@@ -103,20 +39,90 @@ ApplicationWindow {
         } else {
             console.log("sound not playing")
         }
-
-        player.source = file
+        //console.log("to play: ", file);
+        player.source =file
         player.play()
     }
+
+
+    Settings {
+        id: settings
+        property alias serverIP: socket.serverIP
+        property alias language: window.language
+        //property alias lastFile: sound.source
+        //property alias lastFolder: fileDialog.folder
+        property alias delay: page.delay
+        property alias playerIndex: page.playerIndex
+    }
+
+    Component.onCompleted: {
+        page.serverAddressField.text = socket.serverIP
+        page.fileNameField.text = sound.source
+        page.delaySpinbox.value = page.delay
+        page.playerComboBox.currentIndex = page.playerIndex
+        page.languageComboBox.currentIndex = page.languageComboBox.model.indexOf(window.language) //  (window.language=="est") ? 0 : 1 // should use somehow indexOf model // not certain if this is correct ...
+        if (!socket.active) {
+            if (page.serverAddressField.text==socket.serverIP) {
+                socket.active = true
+            } else {
+                socket.serverIP = page.serverAddressField.text // this should activate the socket as well, since server.url is bound to serverIP
+            }
+        }
+    }
+
+    WebSocket {
+        id: socket
+        property string serverIP: "192.168.1.199"
+        url: "ws://"+serverIP+":7007/ws"
+        onTextMessageReceived: {
+            console.log(message)
+            var messageParts = message.split(" ");
+            if (messageParts[0]==="command") {
+                var command =messageParts[1];
+                console.log(command)
+                page.commandLabel.text = command;
+                playOnFirstFreeAudio(getSoundUrl(command))
+            }
+        }
+
+
+        onStatusChanged: if (socket.status == WebSocket.Error) {
+                             console.log("Error: " + socket.errorString)
+                             socket.active = false;
+
+                         } else if (socket.status == WebSocket.Open) {
+                             console.log("Socket open")
+                             socket.sendTextMessage(page.playerComboBox.currentText )
+                             page.connectButton.text = "Connected"
+                             page.connectButton.enabled = false
+                         } else if (socket.status == WebSocket.Closed) {
+                             console.log("Socket closed")
+                             socket.active = false;
+                             page.connectButton.text = "Connect"
+                             page.connectButton.enabled = true
+                         }
+                         else if (socket.status == WebSocket.Connecting) {
+                             console.log("Socket connecting")
+                             page.connectButton.text = "Connecting"
+                             //page.connectButton.enabled = false
+                         }
+
+        active: false
+
+    }
+
+
 
     Audio {
         id: sound
         property int seekPosition: 0 // in ms
-        source: "qrc:///commands/YLD_01.mp3"
+        source: getSoundUrl("YLD_01");
+        //autoPlay: true
     }
 
     Audio {
         id: sound2
-        source: "qrc:///commands/YLD_04.mp3"
+        source:getSoundUrl("YLD_04");
     }
 
     Audio {
@@ -130,23 +136,25 @@ ApplicationWindow {
         Page {
             MainForm {
                 id: page;
-                property string playerIndex: nameCombobox.currentIndex
+                property string playerIndex: playerComboBox.currentIndex
                 property int delay: delaySpinbox.value
+
                 anchors.fill: parent
 
                 playButton.onClicked: {
-                    //sound.play()
-                    playOnFirstFreeAudio("qrc:///commands/YLD_04.mp3")
+                    playOnFirstFreeAudio(getSoundUrl("YLD_04"))
                 }
 
                 stopButton.onClicked: {
-                    playOnFirstFreeAudio("qrc:///commands/YLD_05.mp3")
-                    //sound2.play()
-                    //sound.stop()
+                    playOnFirstFreeAudio(getSoundUrl("YLD_05"))
                 }
 
                 updateButton.onClicked: {
-                    socket.sendTextMessage(page.nameCombobox.currentText )
+                    socket.sendTextMessage(page.playerComboBox.currentText )
+                }
+
+                languageComboBox.onCurrentTextChanged: {
+                    window.language = page.languageComboBox.currentText
                 }
 
                 connectButton.onClicked: {
@@ -172,7 +180,7 @@ ApplicationWindow {
 
             Label {
                 id: connectedLabel2
-                text: (socket.status == WebSocket.Open) ? "Ühendatud" : "Pole ühendatud"
+                text: (socket.status == WebSocket.Open) ? qsTr("Connected") : qsTr("Not connected")
             }
 
             Label {
