@@ -176,7 +176,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 606, 39));
+        menuBar->setGeometry(QRect(0, 0, 606, 36));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -208,17 +208,17 @@ public:
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "K\303\244sk", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->verticalHeaderItem(0);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Tarmo", nullptr));
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Fl\303\266\303\266t", nullptr));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->verticalHeaderItem(1);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Helena", nullptr));
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Klarnet", nullptr));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->verticalHeaderItem(2);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Merje", nullptr));
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Viiul", nullptr));
         QTableWidgetItem *___qtablewidgetitem4 = tableWidget->verticalHeaderItem(3);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Levi", nullptr));
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "T\305\241ello", nullptr));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->verticalHeaderItem(4);
-        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "Taavi", nullptr));
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "Klaver", nullptr));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->verticalHeaderItem(5);
-        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "Vambola", nullptr));
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "L\303\266\303\266kpillid", nullptr));
     } // retranslateUi
 
 };
