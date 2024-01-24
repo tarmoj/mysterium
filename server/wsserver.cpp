@@ -4,6 +4,7 @@
 #include <QtCore/QDebug>
 #include "player.h"
 #include <QFile>
+#include <QtMath>
 
 
 
@@ -26,13 +27,20 @@ WsServer::WsServer(quint16 port, QObject *parent) :
         connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &WsServer::closed);
 	}
 
-    playerSockets << nullptr << nullptr << nullptr << nullptr << nullptr << nullptr;
     connect(&timer, SIGNAL(timeout()), this, SLOT(counterChanged()) );
+
+    playerSockets << nullptr << nullptr << nullptr << nullptr << nullptr << nullptr;
     for (int i=0;i<6;i++) {
         players << new Player(this, i);
         connect(players[i], SIGNAL(sendCommand(int, QString)), this, SIGNAL(sendCommand(int, QString)));
     }
 	loadDensities();
+
+    //TEST
+    sendCommandToPlayers("01", (quint16) 0b100000000);
+    sendCommandToPlayers("02", (quint16) 0b111111111);
+    sendCommandToPlayers("03", (quint16) 0b1);
+
 }
 
 
@@ -66,6 +74,7 @@ void WsServer::processTextMessage(QString message) // message must be an array o
 
 	qDebug()<<"Message received: "<<message;
 	QStringList messageParts = message.split(",");
+/*
     if (messageParts[0].toLower()=="fl") {
 		int index = playerSockets.indexOf(pClient);
 		if (index>0) { // remove the old one if player changed the name
@@ -108,6 +117,7 @@ void WsServer::processTextMessage(QString message) // message must be an array o
 		}
         playerSockets[PERCUSSION] = pClient;
     }
+*/
 }
 
 
@@ -193,6 +203,18 @@ void WsServer::setDensity(int density)
 		qDebug() << "Illegal density value: " << density;
 	}
 
+}
+
+void WsServer::sendCommandToPlayers(QString command, quint16 players)
+{
+    for (int i=0; i<names.count(); i++) {
+        quint16 bitmask = 1 << i;
+        if (players & bitmask) { // check if the according bit is set
+          qDebug() << "Player " << names[i] << "gets command: " << command;
+          //TODO: send ws message
+
+        }
+    }
 }
 
 

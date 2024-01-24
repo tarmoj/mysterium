@@ -10,12 +10,15 @@
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
-#define FLUTE 0
-#define CLARINET 1
-#define VIOLIN 2
-#define CELLO 3
-#define PIANO 4
-#define PERCUSSION 5
+#define JAAN 8  // highest bit in binary code
+#define NOORA 7
+#define ANDRUS 6
+#define INDREK 5
+#define HANS 4
+#define GERHARD 3
+#define KAI 2
+#define KENNETH 1
+#define KYLLI 0 // lowest bit in binary code
 
 
 class Player;
@@ -31,11 +34,14 @@ public:
 	void sendToAll(QString message);
     void resetEventCounters();
 	void loadDensities();
-	void setDensity(int density);
-	QTimer timer;
+    void setDensity(int density);
+    void sendCommandToPlayers(QString command, quint16 players);
+    QTimer timer;
     int counter;
 	int everyNthCommand;
     QList <QWebSocket *> playerSockets;  // used by indexes -  0 FL, 1- CL, etc
+
+    QStringList const names = QStringList() << "Külli" <<  "Kenneth" <<  "Kai" << "Gerhard" << "Hans" << "Indrek" << "Andrus" << "Noora" << "Jaan";
 
 
 

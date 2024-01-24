@@ -24,38 +24,10 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
+     <item row="4" column="2">
+      <widget class="QPushButton" name="resetButton">
        <property name="text">
-        <string>Ühendusi:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Löök nr:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QPushButton" name="startButton">
-       <property name="text">
-        <string>Start (alates)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="clientLabel">
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QPushButton" name="stopButton">
-       <property name="text">
-        <string>Stop</string>
+        <string>Nulli</string>
        </property>
       </widget>
      </item>
@@ -66,16 +38,17 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Ühendusi:</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="1">
-      <widget class="QSpinBox" name="startFromSpinBox">
-       <property name="minimum">
-        <number>-10</number>
-       </property>
-       <property name="maximum">
-        <number>5000</number>
-       </property>
-       <property name="value">
-        <number>-10</number>
+      <widget class="QPushButton" name="seekButton">
+       <property name="text">
+        <string>Hüppa</string>
        </property>
       </widget>
      </item>
@@ -92,10 +65,10 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Kiirus</string>
+        <string>Löök nr:</string>
        </property>
       </widget>
      </item>
@@ -109,41 +82,51 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="2">
+     <item row="5" column="2">
       <widget class="QPushButton" name="testButton">
        <property name="text">
         <string>Test</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QPushButton" name="seekButton">
-       <property name="text">
-        <string>Hüppa</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="2">
-      <widget class="QPushButton" name="resetButton">
-       <property name="text">
-        <string>Nulli</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QPushButton" name="startButton">
        <property name="text">
-        <string>Iga N. käsklus</string>
+        <string>Start (alates)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="clientLabel">
+       <property name="text">
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QSpinBox" name="commandRateSpinBox">
+      <widget class="QSpinBox" name="startFromSpinBox">
        <property name="minimum">
-        <number>1</number>
+        <number>-10</number>
        </property>
        <property name="maximum">
-        <number>12</number>
+        <number>5000</number>
+       </property>
+       <property name="value">
+        <number>-10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Kiirus</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="stopButton">
+       <property name="text">
+        <string>Stop</string>
        </property>
       </widget>
      </item>
@@ -153,9 +136,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>260</y>
-      <width>581</width>
-      <height>351</height>
+      <y>340</y>
+      <width>551</width>
+      <height>271</height>
      </rect>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
@@ -197,6 +180,81 @@
      </property>
     </column>
    </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>290</y>
+      <width>76</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Käsk:</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>280</y>
+      <width>439</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Saada (test):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="commandSpinBox">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>34</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Mängijale: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox">
+       <item>
+        <property name="text">
+         <string>Jaan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Noora</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Andrus</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sendButton">
+       <property name="text">
+        <string>Saada</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -204,7 +262,7 @@
      <x>0</x>
      <y>0</y>
      <width>606</width>
-     <height>36</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>

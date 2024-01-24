@@ -37,7 +37,7 @@ private slots:
 
 	void on_commandRateSpinBox_valueChanged(int arg1);
 
-	void updateDensity(int density);
+    // void updateDensity(int density);
 
 private:
 	Ui::MainWindow *ui;
