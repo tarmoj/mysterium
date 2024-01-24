@@ -95,7 +95,7 @@ void MainWindow::updateCounter(int value)
 
 void MainWindow::on_testButton_clicked()
 {
-    wsServer->sendToAll("command YLD_06");
+    wsServer->sendToAll("command 01");
 }
 
 void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
