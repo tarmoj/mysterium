@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>apple-developer-order.pdf</file>
+        <file>sound1.mp3</file>
+    </qresource>
+</RCC>

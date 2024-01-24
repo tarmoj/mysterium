@@ -12,7 +12,7 @@ Rectangle {
     property alias stopButton: stopButton
     width: 400
     height: 500
-    color: "#0e4248"
+    color: "#5a8d93"
     property alias commandLabel: commandLabel
     property alias playerComboBox: playerComboBox
     property alias updateButton: updateButton
@@ -41,7 +41,7 @@ Rectangle {
         anchors.left: parent.left
 
         Label {
-            text: "Version 0.2.0"
+            text: "Version 1.0.0"
         }
 
         Row {
@@ -53,7 +53,7 @@ Rectangle {
             }
             ComboBox {
                 id: playerComboBox
-                model: ["fl", "cl", "vl", "vlc", "pf", "perc"]
+                model: [ "Jaan", "Noora", "Andrus", "Indrek", "Hans", "Gerhard", "Kai", "Kenneth", "Külli"]
             }
 
             Button {
@@ -86,7 +86,9 @@ Rectangle {
 
         Row {
             id: languageRow
+            visible: false
             spacing: 6
+
 
             Label {
                 text: qsTr("Language:")

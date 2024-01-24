@@ -13,12 +13,12 @@ ApplicationWindow {
     visible: true
     width: 500
     height: 400
-    title: qsTr("Šamaani surm")
+    title: qsTr("Sürrealism 100")
     property string language: "est"  // "est" | "eng"
 
     function getSoundUrl(command) {
-        var url =  "qrc:///commands/" + language + "/" + command + ".mp3";
-        //console.log("getSoundUrl: ", url);
+        var url =  "qrc:///commands/syrr/" + command + ".mp3";
+        console.log("getSoundUrl: ", url);
         return url;
     }
 
@@ -39,7 +39,7 @@ ApplicationWindow {
         } else {
             console.log("sound not playing")
         }
-        //console.log("to play: ", file);
+        console.log("to play: ", file);
         player.source =file
         player.play()
     }
@@ -116,13 +116,13 @@ ApplicationWindow {
     Audio {
         id: sound
         property int seekPosition: 0 // in ms
-        source: getSoundUrl("YLD_01");
+        source: getSoundUrl("01");
         //autoPlay: true
     }
 
     Audio {
         id: sound2
-        source:getSoundUrl("YLD_04");
+        source:getSoundUrl("02");
     }
 
     Audio {
@@ -142,11 +142,11 @@ ApplicationWindow {
                 anchors.fill: parent
 
                 playButton.onClicked: {
-                    playOnFirstFreeAudio(getSoundUrl("YLD_04"))
+                    playOnFirstFreeAudio(getSoundUrl("01"))
                 }
 
                 stopButton.onClicked: {
-                    playOnFirstFreeAudio(getSoundUrl("YLD_05"))
+                    playOnFirstFreeAudio(getSoundUrl("02"))
                 }
 
                 updateButton.onClicked: {
