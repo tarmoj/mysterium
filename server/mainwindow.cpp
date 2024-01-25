@@ -99,11 +99,11 @@ void MainWindow::on_testButton_clicked()
     wsServer->sendToAll("command 01");
 }
 
-void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
-{
-	qDebug()<<"Send now every "<<arg1<<". command.";
-	wsServer->setDensity(arg1);
-}
+//void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
+//{
+//	qDebug()<<"Send now every "<<arg1<<". command.";
+//	wsServer->setDensity(arg1);
+//}
 
 //void MainWindow::updateDensity(int density)
 //{

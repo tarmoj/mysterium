@@ -180,25 +180,12 @@
      </property>
     </column>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>290</y>
-      <width>76</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Käsk:</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>280</y>
-      <width>439</width>
+      <width>484</width>
       <height>35</height>
      </rect>
     </property>
@@ -206,7 +193,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Saada (test):</string>
+        <string>Saada käsk (test): </string>
        </property>
       </widget>
      </item>
@@ -242,6 +229,36 @@
        <item>
         <property name="text">
          <string>Andrus</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Indrek</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hans</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Gerhard</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Kai</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Kenneth</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Külli</string>
         </property>
        </item>
       </widget>

@@ -2,7 +2,7 @@
 #include "QtWebSockets/qwebsocketserver.h"
 #include "QtWebSockets/qwebsocket.h"
 #include <QtCore/QDebug>
-#include "player.h"
+//#include "player.h"
 #include <QFile>
 #include <QtMath>
 
@@ -33,11 +33,7 @@ WsServer::WsServer(quint16 port, QObject *parent) :
         playerSockets.append(nullptr);
     }
 
-//    for (int i=0;i<6;i++) {
-//        players << new Player(this, i);
-//        connect(players[i], SIGNAL(sendCommand(int, QString)), this, SIGNAL(sendCommand(int, QString)));
-//    }
-//	loadDensities();
+
 
     //TEST
 //    sendCommandToPlayers("01", (quint16) 0b100000000);
@@ -119,12 +115,12 @@ void WsServer::counterChanged() // timer timeOut slot
    for (int i=0;i<players.count();i++) {
        players[i]->checkEvents();
    }
-   //TODO: check density
-   QHash< int,  int >::const_iterator foundHash = densityHash.find(counter);
-   if (foundHash != densityHash.end() && foundHash.key() == counter) {
-	   setDensity(foundHash.value());
-	   emit newDensity(foundHash.value());
-   }
+//   //TODO: check density
+//   QHash< int,  int >::const_iterator foundHash = densityHash.find(counter);
+//   if (foundHash != densityHash.end() && foundHash.key() == counter) {
+//	   setDensity(foundHash.value());
+//	   emit newDensity(foundHash.value());
+//   }
 
 }
 
@@ -140,6 +136,7 @@ void WsServer::sendToAll(QString message )
 	}
 }
 
+/*
 void WsServer::loadDensities()
 {
 
@@ -181,6 +178,7 @@ void WsServer::setDensity(int density)
 	}
 
 }
+*/
 
 void WsServer::sendCommandToPlayers(QString command, quint16 players)
 {

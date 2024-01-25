@@ -35,7 +35,7 @@ private slots:
 
 	void on_testButton_clicked();
 
-	void on_commandRateSpinBox_valueChanged(int arg1);
+    //void on_commandRateSpinBox_valueChanged(int arg1);
 
     // void updateDensity(int density);
 
