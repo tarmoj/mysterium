@@ -193,7 +193,7 @@
      <string>Käsk:</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -228,7 +228,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="nameComboBox">
        <item>
         <property name="text">
          <string>Jaan</string>

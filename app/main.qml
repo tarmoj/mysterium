@@ -92,7 +92,7 @@ ApplicationWindow {
 
                          } else if (socket.status == WebSocket.Open) {
                              console.log("Socket open")
-                             socket.sendTextMessage(page.playerComboBox.currentText )
+                             socket.sendTextMessage("here,"+page.playerComboBox.currentText )
                              page.connectButton.text = "Connected"
                              page.connectButton.enabled = false
                          } else if (socket.status == WebSocket.Closed) {
@@ -150,7 +150,7 @@ ApplicationWindow {
                 }
 
                 updateButton.onClicked: {
-                    socket.sendTextMessage(page.playerComboBox.currentText )
+                    socket.sendTextMessage("here,"+page.playerComboBox.currentText )
                 }
 
                 languageComboBox.onCurrentTextChanged: {

@@ -6,6 +6,7 @@
 //#include <QTableWidgetItem>
 
 // version 0.2.0 -  names changed to instruments
+// version 1.0.0 -  basically different app, it is Sürrealism 100 soft.
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -108,3 +109,12 @@ void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
 //{
 //	ui->commandRateSpinBox->setValue(density);
 //}
+
+void MainWindow::on_sendButton_clicked()
+{
+    QString command = QString::number(ui->commandSpinBox->value()).rightJustified(2, '0');
+    QString name = ui->nameComboBox->currentText();
+    quint16 bitmask = 1 << wsServer->names.indexOf(name);
+    wsServer->sendCommandToPlayers(command, bitmask);
+}
+

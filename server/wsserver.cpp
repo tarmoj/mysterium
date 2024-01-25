@@ -29,17 +29,20 @@ WsServer::WsServer(quint16 port, QObject *parent) :
 
     connect(&timer, SIGNAL(timeout()), this, SLOT(counterChanged()) );
 
-    playerSockets << nullptr << nullptr << nullptr << nullptr << nullptr << nullptr;
-    for (int i=0;i<6;i++) {
-        players << new Player(this, i);
-        connect(players[i], SIGNAL(sendCommand(int, QString)), this, SIGNAL(sendCommand(int, QString)));
+    for (int i = 0; i < names.count(); i++) {
+        playerSockets.append(nullptr);
     }
-	loadDensities();
+
+//    for (int i=0;i<6;i++) {
+//        players << new Player(this, i);
+//        connect(players[i], SIGNAL(sendCommand(int, QString)), this, SIGNAL(sendCommand(int, QString)));
+//    }
+//	loadDensities();
 
     //TEST
-    sendCommandToPlayers("01", (quint16) 0b100000000);
-    sendCommandToPlayers("02", (quint16) 0b111111111);
-    sendCommandToPlayers("03", (quint16) 0b1);
+//    sendCommandToPlayers("01", (quint16) 0b100000000);
+//    sendCommandToPlayers("02", (quint16) 0b111111111);
+//    sendCommandToPlayers("03", (quint16) 0b1);
 
 }
 
@@ -74,50 +77,24 @@ void WsServer::processTextMessage(QString message) // message must be an array o
 
 	qDebug()<<"Message received: "<<message;
 	QStringList messageParts = message.split(",");
-/*
-    if (messageParts[0].toLower()=="fl") {
-		int index = playerSockets.indexOf(pClient);
-		if (index>0) { // remove the old one if player changed the name
-			playerSockets[index] = nullptr;
-		}
-        playerSockets[FLUTE] = pClient;
+
+    if (messageParts[0].toLower()=="here" && messageParts.count()>1) {
+        QString name = messageParts[1];
+        int index = names.indexOf(name);
+        if (index>=0) {
+            // check if that socket was assigned to another player before (if changed from the menu)
+            int playerIndex = playerSockets.indexOf(pClient);
+            if (playerIndex>=0) { // remove the old one if player changed the name
+                playerSockets[playerIndex] = nullptr;
+            }
+            qDebug() << name << " connected.";
+            playerSockets[index] = pClient;
+        } else {
+            qDebug() << "Unknown player " << name;
+        }
+
     }
-    if (messageParts[0].toLower()=="cl") {
-		int index = playerSockets.indexOf(pClient); // stupid copy, rather use another function. But copying is faster...
-		if (index>=0) { // remove the old one if player changed the name
-			playerSockets[index] = nullptr;
-		}
-        playerSockets[CLARINET] = pClient;
-    }
-    if (messageParts[0].toLower()=="vl") {
-		int index = playerSockets.indexOf(pClient);
-		if (index>=0) { // remove the old one if player changed the name
-			playerSockets[index] = nullptr;
-		}
-        playerSockets[VIOLIN] = pClient;
-    }
-    if (messageParts[0].toLower()=="vlc") {
-		int index = playerSockets.indexOf(pClient);
-		if (index>=0) { // remove the old one if player changed the name
-			playerSockets[index] = nullptr;
-		}
-        playerSockets[CELLO] = pClient;
-    }
-    if (messageParts[0].toLower()=="pf") {
-		int index = playerSockets.indexOf(pClient);
-		if (index>=0) { // remove the old one if player changed the name
-			playerSockets[index] = nullptr;
-		}
-        playerSockets[PIANO] = pClient;
-    }
-    if (messageParts[0].toLower()=="perc") {
-		int index = playerSockets.indexOf(pClient);
-		if (index>=0) { // remove the old one if player changed the name
-			playerSockets[index] = nullptr;
-		}
-        playerSockets[PERCUSSION] = pClient;
-    }
-*/
+
 }
 
 
@@ -211,7 +188,12 @@ void WsServer::sendCommandToPlayers(QString command, quint16 players)
         quint16 bitmask = 1 << i;
         if (players & bitmask) { // check if the according bit is set
           qDebug() << "Player " << names[i] << "gets command: " << command;
-          //TODO: send ws message
+          emit sendCommand(i, command); // for UI
+          if (playerSockets[i]) {
+            playerSockets[i]->sendTextMessage("command "+command);
+          } else {
+            qDebug() << names[i] << " seems not to be conncted";
+          }
 
         }
     }

@@ -39,6 +39,8 @@ private slots:
 
     // void updateDensity(int density);
 
+    void on_sendButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
 	WsServer * wsServer;
