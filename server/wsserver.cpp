@@ -197,4 +197,37 @@ void WsServer::sendCommandToPlayers(QString command, quint16 players)
     }
 }
 
+void WsServer::loadCommandInfo()
+{
+    QString fileName = ":/command-files/syrr-commands";
+    QFile inputFile(fileName);
+    if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+        QTextStream in(&inputFile);
+        int counter = 0;
+        while (!in.atEnd())
+        {
+          QString line = in.readLine();
+          QStringList fields = line.split("\t");
+
+          if (fields.count()>=3) {
+            bool intOk;
+            int time = fields[0].toInt(&intOk);
+            if (intOk) {
+                QString code = fields[1], command = fields[2];
+                EventClass event;
+                event.index = counter;
+                event.code = code; event.command = command;
+                commandHash.insert(time, event);
+                counter++;
+            }
+          }
+        }
+        qDebug()<<"Added " << counter << "commands";
+        inputFile.close();
+    } else {
+        qDebug()<<"Could not open file " <<fileName;
+    }
+}
+
 

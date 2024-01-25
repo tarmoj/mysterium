@@ -36,6 +36,8 @@ public:
 	void loadDensities();
     void setDensity(int density);
     void sendCommandToPlayers(QString command, quint16 players);
+    void loadCommandInfo();
+
     QTimer timer;
     int counter;
 	int everyNthCommand;
@@ -50,7 +52,7 @@ Q_SIGNALS:
     void newConnection(int connectionsCount);
     void newCounter(int counter);
     void sendCommand(int playerIndex, QString commandString);
-	void newDensity(int density);
+    //void newDensity(int density);
 
 private Q_SLOTS:
     void onNewConnection();
@@ -60,10 +62,19 @@ private Q_SLOTS:
     void counterChanged();
 
 private:
+    class Event {
+    public:
+        int time;
+        int commandNumber;
+        quint16 playerFlags;
+    };
+
     QWebSocketServer *m_pWebSocketServer;
     QList<QWebSocket *> m_clients;
     QList <Player *> players;
-	QHash <int, int> densityHash;
+    //QHash <int, int> densityHash;
+    QList <Event> events;
+
 
 
 };
