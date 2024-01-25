@@ -79,10 +79,11 @@ void MainWindow::showCommand(int player, QString commandString)
     //int testrows= ui->tableWidget->rowCount(), testcolumns = ui->tableWidget->columnCount();
 
 	//qDebug()<< "Command: " << commandString;
-    if ( !ui->tableWidget->item(player, 0)) {
-       ui->tableWidget->setItem(player,0, new QTableWidgetItem(commandString));
+    int convertedIndex = 8-player;
+    if ( !ui->tableWidget->item(convertedIndex, 0)) {
+       ui->tableWidget->setItem(convertedIndex,0, new QTableWidgetItem(commandString));
     } else {
-        ui->tableWidget->item(player, 0)->setText(commandString);
+        ui->tableWidget->item(convertedIndex, 0)->setText(commandString);
     }
 
 }
@@ -99,16 +100,7 @@ void MainWindow::on_testButton_clicked()
     wsServer->sendToAll("command 01");
 }
 
-//void MainWindow::on_commandRateSpinBox_valueChanged(int arg1)
-//{
-//	qDebug()<<"Send now every "<<arg1<<". command.";
-//	wsServer->setDensity(arg1);
-//}
 
-//void MainWindow::updateDensity(int density)
-//{
-//	ui->commandRateSpinBox->setValue(density);
-//}
 
 void MainWindow::on_sendButton_clicked()
 {

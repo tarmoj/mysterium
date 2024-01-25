@@ -65,7 +65,7 @@ private:
     class Event {
     public:
         int time;
-        int commandNumber;
+        QString command;
         quint16 playerFlags;
     };
 

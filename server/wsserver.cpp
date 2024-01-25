@@ -33,12 +33,8 @@ WsServer::WsServer(quint16 port, QObject *parent) :
         playerSockets.append(nullptr);
     }
 
+    loadCommandInfo();
 
-
-    //TEST
-//    sendCommandToPlayers("01", (quint16) 0b100000000);
-//    sendCommandToPlayers("02", (quint16) 0b111111111);
-//    sendCommandToPlayers("03", (quint16) 0b1);
 
 }
 
@@ -110,17 +106,16 @@ void WsServer::socketDisconnected()
 
 void WsServer::counterChanged() // timer timeOut slot
 {
-   counter++;
-   emit newCounter(counter);
-   for (int i=0;i<players.count();i++) {
-       players[i]->checkEvents();
-   }
-//   //TODO: check density
-//   QHash< int,  int >::const_iterator foundHash = densityHash.find(counter);
-//   if (foundHash != densityHash.end() && foundHash.key() == counter) {
-//	   setDensity(foundHash.value());
-//	   emit newDensity(foundHash.value());
-//   }
+    counter++;
+    emit newCounter(counter);
+    for (Event const &event: events) {
+        if (event.time == counter) {
+            sendCommandToPlayers(event.command, event.playerFlags);
+        }
+    }
+
+
+
 
 }
 
@@ -136,49 +131,6 @@ void WsServer::sendToAll(QString message )
 	}
 }
 
-/*
-void WsServer::loadDensities()
-{
-
-	QString fileName = ":/command-files/density";
-	QFile inputFile(fileName);
-	if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))
-	{
-	   QTextStream in(&inputFile);
-	   int counter = 0;
-	   while (!in.atEnd())
-	   {
-		  QString line = in.readLine();
-		  QStringList fields = line.split("\t");
-
-		  if (fields.count()>=2) {
-			  bool timeOk, densityOk;
-			  int time = fields[0].toInt(&timeOk);
-			  int density = fields[1].toInt(&densityOk);
-			  if (timeOk && densityOk) {
-				  densityHash.insert(time, density);
-				  counter++;
-			  }
-		  }
-	   }
-	   qDebug()<<"Added " << counter << "densities";
-	   inputFile.close();
-	} else {
-		qDebug()<<"Could not open file " <<fileName;
-   }
-}
-
-void WsServer::setDensity(int density)
-{
-	if (density>0 && density <= 12) {
-		everyNthCommand = density;
-		qDebug() << "Setting density to " << everyNthCommand;
-	} else {
-		qDebug() << "Illegal density value: " << density;
-	}
-
-}
-*/
 
 void WsServer::sendCommandToPlayers(QString command, quint16 players)
 {
@@ -199,26 +151,29 @@ void WsServer::sendCommandToPlayers(QString command, quint16 players)
 
 void WsServer::loadCommandInfo()
 {
-    QString fileName = ":/command-files/syrr-commands";
+    QString fileName = ":/command-files/syrr.commands";
     QFile inputFile(fileName);
     if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))
     {
+        events.clear();
         QTextStream in(&inputFile);
         int counter = 0;
         while (!in.atEnd())
         {
           QString line = in.readLine();
-          QStringList fields = line.split("\t");
+          QStringList fields = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
 
           if (fields.count()>=3) {
-            bool intOk;
-            int time = fields[0].toInt(&intOk);
-            if (intOk) {
-                QString code = fields[1], command = fields[2];
-                EventClass event;
-                event.index = counter;
-                event.code = code; event.command = command;
-                commandHash.insert(time, event);
+            bool ok1, ok2, ok3;
+            int commandNumber = fields[0].toInt(&ok1);
+            int time = fields[1].toInt(&ok2);
+            quint16 playerFlags = static_cast<quint16>(fields[2].toInt(&ok3, 2));
+            if (ok1 && ok2 && ok3) {
+                Event event;
+                event.command = QString::number(commandNumber).rightJustified(2, '0'); ;
+                event.time = time;
+                event.playerFlags = playerFlags;
+                events.append(event);
                 counter++;
             }
           }

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>606</width>
-    <height>689</height>
+    <width>607</width>
+    <height>889</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Mysterium Server</string>
+   <string>Sürrealism 100 Server</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="layoutWidget">
@@ -138,7 +138,7 @@
       <x>10</x>
       <y>340</y>
       <width>551</width>
-      <height>271</height>
+      <height>401</height>
      </rect>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
@@ -146,32 +146,47 @@
     </attribute>
     <row>
      <property name="text">
-      <string>Flööt</string>
+      <string>Jaan</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Klarnet</string>
+      <string>Noora</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Viiul</string>
+      <string>Andrus</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Tšello</string>
+      <string>Indrek</string>
      </property>
     </row>
     <row>
      <property name="text">
-      <string>Klaver</string>
+      <string>Hans</string>
      </property>
     </row>
     <row>
      <property name="text">
       <string>Löökpillid</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Gerhard</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Kai</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Külli</string>
      </property>
     </row>
     <column>
@@ -278,7 +293,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>606</width>
+     <width>607</width>
      <height>29</height>
     </rect>
    </property>
