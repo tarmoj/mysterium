@@ -5,7 +5,7 @@
 //#include "player.h"
 #include <QFile>
 #include <QtMath>
-
+#include <QCoreApplication>
 
 
 QT_USE_NAMESPACE
@@ -151,7 +151,7 @@ void WsServer::sendCommandToPlayers(QString command, quint16 players)
 
 void WsServer::loadCommandInfo()
 {
-    QString fileName = ":/command-files/syrr.commands";
+    QString fileName =  QCoreApplication::applicationDirPath() + "/syrr.commands"; // ":/command-files/syrr.commands";
     QFile inputFile(fileName);
     if (inputFile.open(QIODevice::ReadOnly|QIODevice::Text))
     {

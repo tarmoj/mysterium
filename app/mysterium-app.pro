@@ -1,5 +1,7 @@
 # Logo: shaman by Gan Khoon Lay from the Noun Project
 
+#syrrealism icon: <a href="https://www.flaticon.com/free-icons/surrealism" title="surrealism icons">Surrealism icons created by Freepik - Flaticon</a>
+
 QT += qml quick widgets core multimedia websockets
 android: QT += androidextras
 
@@ -46,3 +48,5 @@ win32 {
     first.commands = $$[QT_INSTALL_PREFIX]/bin/windeployqt  -qmldir=$$PWD  $$OUT_PWD/$$DESTDIR/release/$${TARGET}.exe # first deployment
     INSTALLS += first
 }
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

@@ -25,6 +25,17 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
+# this does not work, copy by hand
+CONFIG += myconfig
+myconfig.commands += $$PWD/command-files/syrr.commands
+myconfig.target = $$OUT_PWD/syrr.commands
+myconfig.depends = FORCE
+
+QMAKE_EXTRA_TARGETS += myconfig # add conf to binary direcotry
+
+# Add the copy command after the build process
+QMAKE_POST_LINK += myconfig
+
 macx {
     deploy.path = $$PWD
     deploy.commands = $$[QT_INSTALL_PREFIX]/bin/macdeployqt $$OUT_PWD/$$DESTDIR/$${TARGET}.app -qmldir=$$PWD -dmg # deployment
