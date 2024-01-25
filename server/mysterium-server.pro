@@ -25,16 +25,13 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-# this does not work, copy by hand
-CONFIG += myconfig
-myconfig.commands += $$PWD/command-files/syrr.commands
-myconfig.target = $$OUT_PWD/syrr.commands
-myconfig.depends = FORCE
-
-QMAKE_EXTRA_TARGETS += myconfig # add conf to binary direcotry
 
 # Add the copy command after the build process
-QMAKE_POST_LINK += myconfig
+unix {
+    QMAKE_POST_LINK += cp $$PWD/command-files/syrr.commands $$OUT_PWD
+}
+
+
 
 macx {
     deploy.path = $$PWD
@@ -45,9 +42,13 @@ macx {
 
 
 win32 {
+    QMAKE_POST_LINK += copy $$PWD/command-files/syrr.commands $$OUT_PWD # untested
+
     first.path = $$PWD
     first.commands = $$[QT_INSTALL_PREFIX]/bin/windeployqt  -qmldir=$$PWD  $$OUT_PWD/$$DESTDIR/release/$${TARGET}.exe # first deployment
     INSTALLS += first
+
+
 }
 
 
